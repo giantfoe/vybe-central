@@ -269,12 +269,19 @@
   <LoadingScreen on:complete={() => { isLoading = false; window.scrollTo(0, 0); }} />
 {/if}
 
-<div class="app-container {isLoading ? 'app-loading' : ''}">
+<div class="app-container {isLoading ? 'app-loading' : 'app-ready'}">
+  {#if !isLoading}
+    <div class="fixed-bg" style="position: fixed; inset: 0; z-index: -1; pointer-events: none;">
+      <SvgShader />
+    </div>
+  {/if}
 <main>
 <!-- Ora Studio Inspired Hero Section -->
 <section class="hero-ora" id="top">
   <!-- Very High Quality SVG Shader Background -->
-  <SvgShader />
+  {#if !isLoading}
+    <SvgShader />
+  {/if}
 
   <!-- Floating Nav Pill -->
   <header class="ora-nav-container">

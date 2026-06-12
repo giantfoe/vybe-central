@@ -5,16 +5,17 @@
   let isExiting = false;
 
   onMount(() => {
-    // Total animation time is roughly 3.5 seconds
-    // After 3.5s we start the exit animation (fade out / scale down)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const exitDelay = reduceMotion ? 350 : 3200;
+    const removeDelay = reduceMotion ? 450 : 3850;
+
     const exitTimer = setTimeout(() => {
       isExiting = true;
-    }, 4000);
+    }, exitDelay);
 
-    // After the exit animation finishes (e.g. 700ms), we remove the component
     const removeTimer = setTimeout(() => {
       dispatch('complete');
-    }, 4700);
+    }, removeDelay);
 
     return () => {
       clearTimeout(exitTimer);
@@ -29,42 +30,14 @@
     <span class="indent">in your creative journey</span>
   </div>
 
-  <div class="reveal-container">
-    <svg class="reveal-svg" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <!-- The clip path defines the "window" through which the logo is seen.
-             We animate the rectangles inside it to slide across. -->
-        <clipPath id="bars-clip">
-          <!-- Colorful bars sliding from left to right -->
-          <!-- They will be animated via CSS. We start them off-screen (e.g. x="-1000") -->
-          <rect class="bar bar-1" y="0" height="200" width="100" />
-          <rect class="bar bar-2" y="0" height="200" width="150" />
-          <rect class="bar bar-3" y="0" height="200" width="80" />
-          <rect class="bar bar-4" y="0" height="200" width="600" />
-        </clipPath>
-      </defs>
-
-      <!-- The colorful bars themselves that visually slide across the screen.
-           We use the exact same animation so they sync perfectly with the clip path. -->
-      <g class="visual-bars">
-        <rect class="bar bar-1" fill="#fff" y="0" height="200" width="100" />
-        <rect class="bar bar-2" fill="#ff4d85" y="0" height="200" width="150" />
-        <rect class="bar bar-3" fill="#00e5ff" y="0" height="200" width="80" />
-        <rect class="bar bar-4" fill="#304ffe" y="0" height="200" width="600" />
-      </g>
-
-      <!-- The Vybe Central Logo text, revealed by the clip path -->
-      <text 
-        x="50%" 
-        y="55%" 
-        text-anchor="middle" 
-        dominant-baseline="middle" 
-        class="logo-text"
-        clip-path="url(#bars-clip)"
-      >
-        VYBE CENTRAL
-      </text>
-    </svg>
+  <div class="reveal-container" aria-hidden="true">
+    <div class="logo-reveal">
+      <div class="logo-text">VYBE CENTRAL</div>
+      <div class="bar bar-1"></div>
+      <div class="bar bar-2"></div>
+      <div class="bar bar-3"></div>
+      <div class="bar bar-4"></div>
+    </div>
   </div>
 </div>
 
@@ -79,87 +52,182 @@
     justify-content: center;
     color: #fff;
     overflow: hidden;
+    isolation: isolate;
     transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1), 
                 opacity 0.7s cubic-bezier(0.76, 0, 0.24, 1);
   }
 
   .loading-screen.exiting {
-    transform: scale(0.9);
+    transform: scale(0.96);
     opacity: 0;
     pointer-events: none;
   }
 
-  /* Introductory text */
   .intro-text {
     position: absolute;
+    width: min(88vw, 44rem);
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-size: clamp(1.5rem, 4vw, 3.1rem);
     font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.14;
+    letter-spacing: 0;
     opacity: 0;
-    animation: fadeIntro 2s forwards;
+    animation: fadeIntro 1.7s forwards;
     z-index: 1;
   }
 
   .intro-text .indent {
-    margin-left: 2em;
+    display: inline-block;
+    margin-left: clamp(1.25rem, 7vw, 5.5rem);
   }
 
   @keyframes fadeIntro {
     0% { opacity: 0; transform: translateY(10px); }
-    10% { opacity: 1; transform: translateY(0); }
-    70% { opacity: 1; transform: translateY(0); }
-    80% { opacity: 0; transform: translateY(-10px); }
+    14% { opacity: 1; transform: translateY(0); }
+    68% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+
+  @keyframes revealStage {
+    0%, 100% { opacity: 1; }
+  }
+
+  @keyframes logoWipe {
+    0% {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateY(0.1em);
+    }
+    18% { opacity: 1; }
+    100% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideAcross {
+    0% { transform: translate3d(-120%, 0, 0); }
+    100% { transform: translate3d(140%, 0, 0); }
+  }
+
+  @keyframes barFade {
+    0%, 82% { opacity: 1; }
     100% { opacity: 0; }
   }
 
-  /* Reveal Container */
   .reveal-container {
     position: absolute;
-    width: 100%;
-    max-width: 1200px;
-    height: 100%;
+    width: min(90vw, 58rem);
+    height: clamp(5rem, 16vw, 10rem);
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    animation: revealStage 1.5s 1.72s forwards;
     z-index: 2;
   }
 
-  .reveal-svg {
+  .logo-reveal {
+    position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    contain: layout paint style;
   }
 
   .logo-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 800;
-    font-size: 80px;
-    fill: #fff;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.35rem, 8.2vw, 5.6rem);
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+    opacity: 0;
+    animation: logoWipe 1.05s 1.92s cubic-bezier(0.76, 0, 0.24, 1) forwards;
   }
 
-  /* SVG Bars Animation */
   .bar {
-    x: -800; /* Start completely off screen left */
-    /* Note: x attribute is animated via CSS */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -22%;
+    will-change: transform, opacity;
+    transform: translate3d(-120%, 0, 0);
+    animation: slideAcross 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards,
+               barFade 1.2s linear forwards;
   }
 
-  /* Using CSS to animate SVG attributes isn't perfectly supported in all older browsers,
-     but animating transform: translateX is robust. We will use transform. */
-  .bar {
-    transform: translateX(-1200px);
-    animation: slideAcross 2.5s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  .bar-1 {
+    width: 13%;
+    background: #fff;
+    animation-delay: 1.74s;
   }
 
-  /* We stagger the bars to create a layered sliding effect */
-  .bar-1 { animation-delay: 0.8s; }
-  .bar-2 { animation-delay: 0.9s; }
-  .bar-3 { animation-delay: 0.95s; }
-  .bar-4 { animation-delay: 1.05s; }
+  .bar-2 {
+    width: 21%;
+    background: #ff4d85;
+    animation-delay: 1.82s;
+  }
 
-  @keyframes slideAcross {
-    0% { transform: translateX(-1200px); }
-    100% { transform: translateX(1800px); }
+  .bar-3 {
+    width: 12%;
+    background: #00e5ff;
+    animation-delay: 1.9s;
+  }
+
+  .bar-4 {
+    width: 72%;
+    background: #304ffe;
+    animation-delay: 1.98s;
+  }
+
+  @media (max-width: 640px) {
+    .intro-text {
+      width: min(86vw, 24rem);
+      font-size: clamp(1.35rem, 7vw, 2.35rem);
+      line-height: 1.12;
+    }
+
+    .intro-text .indent {
+      margin-left: clamp(0.75rem, 9vw, 2.5rem);
+    }
+
+    .reveal-container {
+      width: min(88vw, 24rem);
+      height: clamp(4.25rem, 22vw, 6.5rem);
+    }
+
+    .logo-text {
+      font-size: clamp(2rem, 10vw, 3.25rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loading-screen,
+    .intro-text,
+    .reveal-container,
+    .logo-text,
+    .bar {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .intro-text,
+    .bar {
+      display: none;
+    }
+
+    .reveal-container,
+    .logo-text {
+      opacity: 1;
+      clip-path: none;
+    }
   }
 </style>

@@ -1,8 +1,8 @@
 :root {
   color-scheme: dark;
-  --background: #000000;
-  --background-soft: #0a0a0a;
-  --background-accent: #111111;
+  --background: transparent;
+  --background-soft: rgba(10, 10, 10, 0.4);
+  --background-accent: rgba(17, 17, 17, 0.4);
   --text-primary: #ffffff;
   --text-secondary: #a3a3a3;
   --text-muted: #666666;
@@ -37,15 +37,21 @@ body {
 }
 
 .app-container {
-  transition: opacity 1s cubic-bezier(0.76, 0, 0.24, 1), transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: none;
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
 .app-container.app-loading {
   opacity: 0;
-  transform: translateY(20px) scale(0.98);
+  transform: translateY(0) scale(1);
   pointer-events: none;
+}
+
+.app-container.app-ready {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 /* Typography Selection */
