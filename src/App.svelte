@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import Lenis from 'lenis';
   import {
     ArrowUpRight,
     Camera,
@@ -194,6 +195,27 @@
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+
+    // Initialize Lenis
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
+
+    // Fallback for native Scroll-Driven Animations
+    if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view-fallback');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.capability-row, .process-step-row, .why-card, .portfolio-card').forEach((el) => {
+        observer.observe(el);
+      });
+    }
+
     const updateTime = () => {
       const options = {
         timeZone: 'Africa/Freetown',

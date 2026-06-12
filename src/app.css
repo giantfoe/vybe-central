@@ -4,8 +4,8 @@
   --background-soft: rgba(10, 10, 10, 0.4);
   --background-accent: rgba(17, 17, 17, 0.4);
   --text-primary: #ffffff;
-  --text-secondary: #a3a3a3;
-  --text-muted: #666666;
+  --text-secondary: #ffffff;
+  --text-muted: #f0f0f0;
   --line: rgba(255, 255, 255, 0.1);
   --line-dark: rgba(255, 255, 255, 0.2);
   --accent: #ff4d85;
@@ -27,6 +27,7 @@
 }
 
 body {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.4);
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
@@ -105,7 +106,7 @@ img {
   display: grid;
   background-color: var(--line);
   gap: 1px;
-  border: 1px solid var(--line);
+  
 }
 
 /* Header & Navigation */
@@ -159,7 +160,7 @@ img {
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  
   background: var(--background);
 }
 
@@ -298,7 +299,7 @@ body {
 
 .ora-book-call {
   background: #fff;
-  color: #000;
+  color: #000000;
   border: none;
   border-radius: 30px;
   padding: 0.8rem 1.5rem;
@@ -489,7 +490,7 @@ body {
   padding: 3rem 4%;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
-  background-color: var(--background-soft);
+  
 }
 
 .partners-title {
@@ -590,7 +591,12 @@ body {
 }
 
 .portfolio-card {
-  background-color: var(--background-soft);
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -605,7 +611,7 @@ body {
   height: 22rem;
   overflow: hidden;
   position: relative;
-  background-color: var(--background-accent);
+  
 }
 
 .portfolio-img img {
@@ -618,7 +624,7 @@ body {
 .portfolio-meta {
   padding: 1.5rem;
   border-top: 1px solid var(--line);
-  background-color: var(--background-soft);
+  
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -654,7 +660,12 @@ body {
 }
 
 .achievement-card {
-  background-color: var(--background-soft);
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
   padding: 3rem 2rem;
   text-align: center;
   display: flex;
@@ -694,10 +705,15 @@ body {
 }
 
 .capability-row {
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   padding: 2.5rem;
-  border: 1px solid var(--line);
+  
   border-radius: 12px;
   background-color: transparent;
   transition: border-color 0.3s ease;
@@ -753,7 +769,7 @@ body {
 
 /* Interactive Process: How We Work */
 .process-section {
-  background-color: var(--background-soft);
+  
   color: var(--text-primary);
   border-bottom: 1px solid var(--line);
 }
@@ -790,10 +806,15 @@ body {
 }
 
 .process-step-row {
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   display: grid;
   grid-template-columns: 0.5fr 1fr 2fr;
   gap: 2rem;
-  background-color: var(--background-accent);
+  
   padding: 2.5rem 2rem;
   align-items: start;
 }
@@ -862,7 +883,12 @@ body {
 }
 
 .why-card {
-  background-color: var(--background-soft);
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
   padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
@@ -874,7 +900,7 @@ body {
   height: 2.8rem;
   border-radius: 8px;
   background: var(--background-accent);
-  border: 1px solid var(--line);
+  
   display: grid;
   place-items: center;
   color: var(--accent-hot);
@@ -896,10 +922,10 @@ body {
 .testimonial-box {
   max-width: 60rem;
   margin: 0 auto;
-  border: 1px solid var(--line);
+  
   padding: 4rem 3rem;
   border-radius: 16px;
-  background-color: var(--background-soft);
+  
   position: relative;
   text-align: center;
 }
@@ -944,7 +970,7 @@ body {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  
   background-color: var(--background);
   display: grid;
   place-items: center;
@@ -1063,8 +1089,13 @@ body {
 }
 
 .contact-form-column {
-  background-color: var(--background-soft);
-  border: 1px solid var(--line);
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
+  
   border-radius: 16px;
   padding: 3.5rem 3rem;
 }
@@ -1103,7 +1134,7 @@ body {
 
 .form-input {
   width: 100%;
-  border: 1px solid var(--line);
+  
   background-color: var(--background);
   border-radius: 8px;
   padding: 1rem 1.2rem;
@@ -1149,19 +1180,19 @@ body {
 
 .form-status-msg.success {
   background-color: rgba(92, 184, 92, 0.12);
-  color: #3e8e3e;
+  color: #4ade80; /* brightened for contrast */
   border: 1px solid rgba(92, 184, 92, 0.2);
 }
 
 .form-status-msg.error {
   background-color: rgba(244, 67, 54, 0.12);
-  color: #d32f2f;
+  color: #f87171; /* brightened for contrast */
   border: 1px solid rgba(244, 67, 54, 0.2);
 }
 
 /* Footer Styling */
 .footer-section {
-  background-color: var(--background-soft);
+  
   color: var(--text-primary);
   border-top: 1px solid var(--line-dark);
   padding: 6rem 4% 4rem 4%;
@@ -1307,11 +1338,21 @@ body {
     grid-template-columns: 1fr;
   }
   .capability-row {
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 3rem 0;
   }
   .process-step-row {
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 2rem 1.5rem;
@@ -1387,6 +1428,11 @@ body {
     grid-column: 1 / -1;
   }
   .contact-form-column {
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     padding: 2.5rem 1.5rem;
   }
   .footer-top {
@@ -1407,4 +1453,122 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ========================================= */
+/* NATIVE CSS SCROLL-DRIVEN ANIMATIONS       */
+/* ========================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+
+    /* --- ENTRY REVEALS --- */
+    @keyframes slide-fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .capability-row, 
+    .process-step-row, 
+    .why-card, 
+    .portfolio-card {
+      animation: slide-fade-in linear both;
+      animation-timeline: view(block);
+      animation-range: entry 5% cover 25%;
+    }
+
+    /* Staggered entry for portfolio cards */
+    .portfolio-grid .portfolio-card:nth-child(2) {
+      animation-range: entry 10% cover 30%;
+    }
+    .portfolio-grid .portfolio-card:nth-child(3) {
+      animation-range: entry 15% cover 35%;
+    }
+
+    /* --- HERO PARALLAX --- */
+    /* The hero content fades out and slides up slower than the scroll, creating depth */
+    @keyframes hero-parallax {
+      to {
+        opacity: 0;
+        transform: translateY(200px) scale(0.95);
+      }
+    }
+    
+    .ora-main-content {
+      animation: hero-parallax linear both;
+      animation-timeline: scroll(block nearest);
+      animation-range: 0vh 70vh; /* Animates during the first 70vh of scroll */
+    }
+
+    /* --- IMAGE PARALLAX --- */
+    /* Portfolio images slowly translate down as they scroll up the screen */
+    @keyframes image-parallax {
+      from { transform: translateY(-10%); }
+      to { transform: translateY(10%); }
+    }
+
+    .portfolio-img img {
+      animation: image-parallax linear both;
+      animation-timeline: view(block);
+      height: 120%; /* Give it room to parallax without showing edges */
+      width: 100%;
+      object-fit: cover;
+      transform-origin: center center;
+    }
+  }
+}
+
+/* ========================================= */
+/* JS FALLBACK FOR UNSUPPORTED BROWSERS      */
+/* ========================================= */
+.capability-row, 
+.process-step-row, 
+.why-card, 
+.portfolio-card {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.capability-row:not(.in-view-fallback), 
+.process-step-row:not(.in-view-fallback), 
+.why-card:not(.in-view-fallback), 
+.portfolio-card:not(.in-view-fallback) {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+/* Disable the fallback styles if native view() is supported so they don't clash */
+@supports ((animation-timeline: view()) and (animation-range: entry)) {
+  .capability-row, 
+  .process-step-row, 
+  .why-card, 
+  .portfolio-card {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ========================================= */
+/* LENIS SMOOTH SCROLL REQUIRED STYLES       */
+/* ========================================= */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

@@ -8,6 +8,9 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+    <div class="orb orb-6"></div>
+    <div class="orb orb-7"></div>
   </div>
 
   <svg class="shader-defs">
@@ -77,8 +80,8 @@
     inset: -20%;
     width: 140%;
     height: 140%;
-    /* Apply the SVG displacement filter to the orbs to create the fluid effect */
-    filter: url(#liquid-filter);
+    /* Apply the SVG displacement filter and reduce brightness by 30% */
+    filter: url(#liquid-filter) brightness(0.7);
     opacity: 0.85;
   }
 
@@ -125,6 +128,36 @@
     background: #0ea5e9; /* Light blue */
     animation-delay: -15s;
     animation-duration: 30s;
+  }
+
+  .orb-5 {
+    top: 50%;
+    left: 70%;
+    width: 65vw;
+    height: 65vw;
+    background: #ff4d85; /* Accent Hot */
+    animation-delay: -2s;
+    animation-duration: 22s;
+  }
+
+  .orb-6 {
+    bottom: -15%;
+    left: -10%;
+    width: 80vw;
+    height: 80vw;
+    background: #f5b43a; /* Accent Gold */
+    animation-delay: -8s;
+    animation-duration: 28s;
+  }
+
+  .orb-7 {
+    top: -10%;
+    left: 30%;
+    width: 55vw;
+    height: 55vw;
+    background: #00e5ff; /* Accent Cyan */
+    animation-delay: -12s;
+    animation-duration: 24s;
   }
 
   @keyframes float-orb {
